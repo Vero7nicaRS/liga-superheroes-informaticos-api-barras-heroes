@@ -1,0 +1,85 @@
+<div class="contenedor-principal">
+    <div class="formulario-container">
+        <h2>Inscripción de Héroes</h2>
+
+        <form [formGroup]="formulario" (ngSubmit)="registrarHeroe()">
+
+            <!-- NOMBRE -->
+            <label>Nombre:</label>
+            <input type="text" formControlName="nombre" />
+            @if (formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid) {
+                @if (formulario.get('nombre')?.errors?.['required']) {
+                    <small style="color:red">El nombre es obligatorio.</small>
+                }
+                @if (formulario.get('nombre')?.errors?.['minlength']) {
+                    <small style="color:red">El nombre debe tener al menos 3 caracteres.</small>
+                }
+            }
+
+            <!-- DESCRIPCIÓN -->
+            <label>Descripción:</label>
+            <textarea formControlName="descripcion"></textarea>
+            @if (formulario.get('descripcion')?.touched && formulario.get('descripcion')?.invalid) {
+                @if (formulario.get('descripcion')?.errors?.['required']) {
+                    <small style="color:red">La descripción es obligatoria.</small> 
+                }
+                @if (formulario.get('descripcion')?.errors?.['minlength']) {
+                    <small style="color:red">La descripción debe tener al menos 10 caracteres.</small>
+                }
+                @if (formulario.get('descripcion')?.errors?.['maxlength']) {
+                    <small style="color:red">La descripción no puede exceder los 50 caracteres.</small>
+                }
+            }
+
+            <!-- ARCHIVO -->
+            <label>Imagen (archivo):</label>
+            <input type="file" (change)="onFileSelected($event)" />
+
+            @if (archivoError()) {
+                <small style="color:red">Debes seleccionar un archivo válido.</small>
+            }
+
+            <!-- EMAIL -->
+            <label>Email:</label>
+            <input type="email" formControlName="email" />
+
+            @if (formulario.get('email')?.touched && formulario.get('email')?.invalid) {
+                @if (formulario.get('email')?.errors?.['required']) {
+                    <small style="color:red">El email es obligatorio.</small>
+                }
+                @if (formulario.get('email')?.errors?.['email']) {
+                    <small style="color:red">El formato del email no es válido.</small>
+                }
+            }
+
+            <!-- TIPO -->
+            <label>Tipo:</label>
+            <select formControlName="tipo">
+                <option value="">Seleccione tipo</option>
+                <option value="Programador">Programador</option>
+                <option value="Sistemas">Sistemas</option>
+                <option value="QA">QA</option>
+                <option value="Negocio">Negocio</option>
+            </select>
+
+            <!-- MEDALLAS -->
+            <label>Número de Medallas:</label>
+            <input type="number" formControlName="numeroMedallas" min="0" />
+            @if (formulario.get('numeroMedallas')?.touched && formulario.get('numeroMedallas')?.invalid) {
+                <small style="color:red">El número de medallas es obligatorio y debe ser válido.</small>
+            }
+
+            <button type="submit">Registrar Héroe</button>
+        </form>
+    </div>
+
+    <!-- Card de previsualización del héroe propuesto -->
+    <div class="card-container">
+        @if(heroePropuesto().nombre){
+            <app-superheroe 
+                [heroe]="heroePropuesto()" 
+                [edicionHabilitada]="false">
+            </app-superheroe>
+        }
+    </div>
+</div>

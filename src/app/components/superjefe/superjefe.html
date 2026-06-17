@@ -1,0 +1,52 @@
+<h2 class="mt-3">Escribir al Superjefe</h2>
+<div class="row mt-3">
+  <div class="col-md-6 m-3">
+    <form [formGroup]="formulario" (ngSubmit)="enviarMensaje()">
+      <div class="mb-3">
+        <label class="form-label">Remitente</label>
+        <input type="text" class="form-control" formControlName="remitente" maxlength="20">
+        @if(formulario.get('remitente')?.invalid && formulario.get('remitente')?.touched) {
+          @if(formulario.get('remitente')?.errors?.['required']) {
+            <div class="text-danger">El remitente es obligatorio.</div>
+          }
+          @if(formulario.get('remitente')?.errors?.['maxlength']) {
+            <div class="text-danger">Máximo 20 caracteres.</div>
+          }
+        }
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Edad</label>
+        <input type="number" class="form-control" formControlName="edad" min="0" max="99">
+        @if(formulario.get('edad')?.invalid && formulario.get('edad')?.touched) {
+          @if(formulario.get('edad')?.errors?.['required']) {
+            <div class="text-danger">La edad es obligatoria.</div>
+          }
+          @if(formulario.get('edad')?.errors?.['max']) {
+            <div class="text-danger">Máximo 2 cifras (99).</div>
+          }
+        }
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mensaje</label>
+        <input type="text" class="form-control" formControlName="mensaje">
+        @if(formulario.get('mensaje')?.invalid && formulario.get('mensaje')?.touched) {
+          @if(formulario.get('mensaje')?.errors?.['required']) {
+            <div class="text-danger">El mensaje es obligatorio.</div>
+          }
+          @if(formulario.get('mensaje')?.errors?.['minlength']) {
+            <div class="text-danger">Mínimo 10 caracteres.</div>
+          }
+          @if(formulario.get('mensaje')?.errors?.['maxlength']) {
+            <div class="text-danger">Máximo 14 caracteres.</div>
+          }
+        }
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+  </div>
+  <div class="col-md-6 m-3">
+    @for(m of mensajes; track $index) {
+      <app-mensaje [mensaje]="m"></app-mensaje>
+    }
+  </div>
+</div>

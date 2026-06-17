@@ -1,0 +1,57 @@
+<h2 class="titulo-villanos">Lista negra de supervillanos</h2>
+@if(en_guerra()) {
+<p class="mensaje-guerra">¡Estamos en guerra contra los supervillanos! Mantente alerta y evita caer en sus trampas.</p>
+}@else{
+<p class="mensaje-guerra">La guerra contra los supervillanos ha terminado. ¡Gracias por tu ayuda!</p>
+}
+<div class="dropdown">
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Negocioi</a></li>
+    <li><a class="dropdown-item" href="#">QA</a></li>
+    <li><a class="dropdown-item" href="#">Analista</a></li>
+  </ul>
+</div>
+<h6 class="nombre-columnas-container">
+    <p class="elemento-columna elemento-corto">Nombre</p>
+    <p class="elemento-columna elemento-largo">Descripción</p>
+    <p class="elemento-columna elemento-muy-corto">Inteligencia</p>
+    <p class="elemento-columna elemento-muy-corto">Fuerza</p>
+    <p class="elemento-columna elemento-muy-corto">Velocidad</p>
+    <p class="elemento-columna elemento-muy-corto">Durabilidad</p>
+    <p class="elemento-columna elemento-muy-corto">Poder</p>
+    <p class="elemento-columna elemento-muy-corto">Combate</p>
+    <p class="elemento-columna elemento-corto">Acciones</p>
+</h6>
+
+<!-- Se sigue utilizando "expulsarVillano($event)" para eliminar a un supervillano usando PROMISE -->
+@for(villano of villanos(); track villano.id) {
+  <app-supervillano [villano]="villano" (expulsar)="expulsarVillano($event)" (modalImagen)="mostrarModal($event)"></app-supervillano>
+}
+
+@if(en_guerra()) {
+<button class="boton-guerra btn btn-success" (click)="en_guerra.set(false)">Firmar la Paz</button>
+}@else{
+<button class="boton-guerra btn btn-danger" (click)="en_guerra.set(true)">Declarar la guerra</button>
+}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalImagen" tabindex="-1" aria-labelledby="modalImagenLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalImagenLabel">Imagen del villano</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Se añade la URL + Imagen -->
+        <img [src]= "'http://localhost:5000/images/' + villanoSeleccionado().imagen" alt="Villano">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

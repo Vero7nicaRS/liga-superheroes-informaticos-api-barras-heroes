@@ -1,0 +1,13 @@
+.footer{
+    background-color: grey !important;
+    height: auto;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: grey !important;
+}
+p{
+    color: white !important;    
+}

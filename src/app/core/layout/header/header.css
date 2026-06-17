@@ -1,0 +1,24 @@
+.navbar{
+    background-color: grey !important;
+    height: 8rem;
+    z-index: 2000;
+}
+.navbar-collapse{
+    background-color: grey !important;
+    padding: 1rem;
+    z-index: 3000;
+}
+.navbar-brand{
+    color: white !important;
+}
+.nav-link{
+    color: white !important;
+    padding: 1rem;
+}
+.dropdown-menu{
+    background-color: grey !important;
+}
+.navbar-logo{
+    width: auto;
+    height: 7rem;
+}

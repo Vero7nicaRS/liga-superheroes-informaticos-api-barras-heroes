@@ -1,0 +1,14 @@
+<div class="linea-villano">
+    <p class="elemento-villano elemento-corto">{{ villano.nombre }}</p>
+    <p class="elemento-villano elemento-largo">{{ villano.descripcion }}</p>
+    <p class="elemento-villano elemento-muy-corto">{{ villano.inteligencia }}</p>
+    <p class="elemento-villano elemento-muy-corto">{{ villano.fuerza }}</p>
+    <p class="elemento-villano elemento-muy-corto">{{ villano.velocidad }}</p>
+    <p class="elemento-villano elemento-muy-corto">{{ villano.durabilidad }}</p>
+    <p class="elemento-villano elemento-muy-corto">{{ villano.poder }}</p>
+    <p class="elemento-villano elemento-muy-corto">{{ villano.combate }}</p>
+    <div class="botoners-container">
+        <button class="boton btn btn-danger" (click)="expulsarVillano()">Eliminar</button>
+        <button class="boton btn btn-warning" (click)="mostrarModal()">Ver imagen</button>
+    </div>
+</div>

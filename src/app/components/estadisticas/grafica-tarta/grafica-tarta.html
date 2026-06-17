@@ -1,0 +1,12 @@
+<div class="titulo-container">
+  <h4>Gráfica de tarta</h4>
+</div>
+<div style="width: 500px; height: 400px; margin: auto;"> 
+  <!-- Height "900px" a Height "400px" para que la gráfica de barras de los héroes
+   no esté muy abajo -->
+    <canvas  baseChart 
+    [data]="pieChartData" 
+    type="pie" 
+    [options]="pieChartOptions">
+    </canvas>
+</div>

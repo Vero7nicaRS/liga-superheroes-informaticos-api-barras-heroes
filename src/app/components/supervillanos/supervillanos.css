@@ -1,0 +1,56 @@
+.titulo-villanos{
+    text-align: center;
+    margin: 1rem;
+}
+
+.nombre-columnas-container {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    margin-top: 1rem;
+    display: flex;
+
+    border-radius: 4px;;
+}
+.elemento-columna {
+    font-size: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.elemento-corto {
+    width: 10rem;
+}
+
+.elemento-muy-corto {
+    width: 6rem;
+}
+
+.elemento-largo {
+    width: 35rem;
+}
+.botones-container{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.mensaje-guerra{
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 2rem;
+}
+.boton-guerra{
+    margin-left: 6rem;
+    margin-top: 2rem;
+}
+.boton-tipo{
+    margin-left: 6rem;
+    margin-top: 2rem;
+}
+.modal-body{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,32 @@
+.contenedor-heroes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.valores-row {
+    display: flex;
+    gap: 10px;
+}
+
+.boton {
+    margin: 1rem;
+    margin-left: 8rem;
+    ;
+}
+
+.modal-header {
+    background-color: orange !important;
+}
+h3{
+    text-align: center;
+}
+.sin-favoritos{
+    text-align: center;
+    font-style: italic;
+    color: rgb(247, 3, 3);
+    font-weight: bold;
+
+}

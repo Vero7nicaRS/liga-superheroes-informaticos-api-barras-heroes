@@ -1,0 +1,38 @@
+.linea-villano {
+    margin-left: 6rem;
+    margin-right: 6rem;
+    margin-top: 1rem;
+    display: flex;
+    box-shadow: 1px 1px 4px 3px #ccc;
+    border-radius: 4px;;
+}
+
+.elemento-villano {
+    font-size: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.elemento-corto {
+    width: 10rem;
+}
+
+.elemento-muy-corto {
+    width: 6rem;
+}
+
+.elemento-largo {
+    width: 35rem;
+}
+.botones-container{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.boton{
+    margin: 1rem;
+}

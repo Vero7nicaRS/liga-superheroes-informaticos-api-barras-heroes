@@ -1,0 +1,32 @@
+.heroe-card{
+    width: 18rem;
+    height:25em;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+.card-img-top{
+    height: 15rem;
+    object-fit: cover;
+}
+.btn{
+    margin: 1rem;
+}
+.card-buttons{
+    display: flex;
+    justify-content: center;
+}
+.card-body{
+    height: 0rem;
+    width: 100%;
+    justify-content: justify;
+}
+.btn-fav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.4rem;
+    height: 1.5rem;
+    margin-top: 0rem;
+}
+h5{
+    width: 90%;
+}

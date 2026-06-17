@@ -1,0 +1,16 @@
+<div class="titulo-container-heroes">
+  <h3>Estadísticas de la Liga</h3>
+    <hr> <!--Añado la línea separatoria entre "Estadísticas de la Liga" y "Gráfica de Barras" -->
+</div>
+<div class="titulo-container-heroes">
+  <h4>Gráfica de Barras</h4>
+</div>
+
+<div style="width: 500px; height: 500px; margin: auto;">
+  <canvas
+    baseChart
+    [data]="barChartData()"
+    [options]="barChartOptions"
+    type="bar">
+  </canvas>
+</div>

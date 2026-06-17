@@ -1,0 +1,209 @@
+<button class="boton btn btn-primary" 
+(click)="mostrarHeroes.set(!mostrarHeroes())">
+    Ver / Ocultar superheroes. Ejemplo if
+</button>
+
+<div class="boton dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Tipo de héroe. Ejemplo switch
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" (click)="filtrarHeroes('Todos')">Todos</a></li>
+        <li><a class="dropdown-item" (click)="filtrarHeroes('Programador')">Programador</a></li>
+        <li><a class="dropdown-item" (click)="filtrarHeroes('QA')">QA</a></li>
+        <li><a class="dropdown-item" (click)="filtrarHeroes('Negocio')">Negocio</a></li>
+        <li><a class="dropdown-item" (click)="filtrarHeroes('Sistemas')">Sistemas</a></li>
+    </ul>
+</div>
+
+@switch(tipoFiltrado()){
+@case ('Todos'){
+@defer(on timer (3000)){
+<h3 class="texto-filtrado">Mostrando superheroes de todos los tipos</h3>
+}@placeholder{
+<h3 class="texto-filtrado">Cargando titulo...</h3>
+}
+}
+@case ('Programador'){
+<h3 class="texto-filtrado">Mostrando superheroes de tipo Programador</h3>
+}
+@case ('QA'){
+<h3 class="texto-filtrado">Mostrando superheroes de tipo QA</h3>
+}
+@case ('Negocio'){
+<h3 class="texto-filtrado">Mostrando superheroes de tipo Negocio</h3>
+}
+@case ('Sistemas'){
+<h3 class="texto-filtrado">Mostrando superheroes de tipo Sistemas</h3>
+}
+@default{
+<h3 class="texto-filtrado">Selecciona un tipo de héroe para mostrar</h3>
+}
+}
+
+@if(mostrarHeroes()){
+    <h3>Héroes </h3>
+<div class="contenedor-heroes">
+    @for(heroe of heroesFiltrados(); track heroe.id){
+    <app-superheroe 
+        [heroe]="heroe" 
+        [edicionHabilitada]="edicionHabilitada()" 
+        [esFavorito]="esFavorito(heroe.id)"
+        (expulsar)="expulsarHeroe($event)" 
+        (modalEditar)="modalEditarHeroe($event)">
+    </app-superheroe>
+    }
+</div>
+<hr>
+
+<h3>Héroes favoritos</h3>
+
+@if(heroesFavoritos().length === 0) {
+<p class="sin-favoritos">No hay héroes favoritos todavía.</p>
+}
+
+<div class="contenedor-heroes">
+    @for(heroe of heroesFavoritos(); track heroe.id) {
+
+    <app-superheroe 
+    [heroe]="heroe" 
+    [esFavorito]="true" 
+    [edicionHabilitada]="edicionHabilitada()"
+    (expulsar)="expulsarHeroe($event)" 
+    (modalEditar)="modalEditarHeroe($event)">
+    </app-superheroe>
+
+    }
+
+</div>
+}
+
+
+
+<!-- Modal Editar Heroe -->
+<div class="modal" id="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Heroe</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" 
+                        [ngModel]="heroeEditado().nombre"
+                        (ngModelChange)="heroeEditado.set({ ...heroeEditado(), nombre: $event })" 
+                        name="nombre" class="form-control">
+
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" 
+                        [ngModel]="heroeEditado().descripcion"
+                        (ngModelChange)="heroeEditado.set({ ...heroeEditado(), descripcion: $event })"
+                        name="descripcion" class="form-control"></textarea>
+
+                    <label for="imagen">Imagen:</label>
+                    <input type="file" id="imagen" (change)="archivoSeleccionado($event)" class="form-control">
+
+                    <label for="alineacion">Alineación:</label>
+                    <select id="alineacion" 
+                        [ngModel]="heroeEditado().alineacion"
+                        (ngModelChange)="heroeEditado.set({ ...heroeEditado(), alineacion: $event })" 
+                        name="alineacion" class="form-control">
+                        <option value="amigo">amigo</option>
+                        <option value="enemigo">enemigo</option>
+                    </select>
+
+                    <label for="tipo">Tipo:</label>
+                    <select id="tipo" 
+                        [ngModel]="heroeEditado().tipo"
+                        (ngModelChange)="heroeEditado.set({ ...heroeEditado(), tipo: $event })" 
+                        name="tipo" class="form-control">
+                        <option value="Programador">Programador</option>
+                        <option value="QA">QA</option>
+                        <option value="Negocio">Negocio</option>
+                        <option value="Sistemas">Sistemas</option>
+                    </select>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" 
+                        [ngModel]="heroeEditado().email"
+                        (ngModelChange)="heroeEditado.set({ ...heroeEditado(), email: $event })" 
+                        name="email" class="form-control">
+
+                    <label for="numeroMedallas">Número de Medallas:</label>
+                    <input type="number" id="numeroMedallas" 
+                        [ngModel]="heroeEditado().numeroMedallas"
+                        (ngModelChange)="heroeEditado.set({ ...heroeEditado(), numeroMedallas: $event })"
+                        name="numeroMedallas" class="form-control">
+
+                    <div class="atributos_combate_num">
+
+                        <div>
+                            <label for="inteligencia">Inteligencia:</label>
+                            <input type="number" id="inteligencia" 
+                            [ngModel]="heroeEditado().inteligencia"
+                                (ngModelChange)="heroeEditado.set({ ...heroeEditado(), inteligencia: $event })"
+                                name="inteligencia" class="form-control">
+                        </div>
+
+                        <div>
+                            <label for="fuerza">Fuerza:</label>
+                            <input type="number" id="fuerza" 
+                                [ngModel]="heroeEditado().fuerza"
+                                (ngModelChange)="heroeEditado.set({ ...heroeEditado(), fuerza: $event })" 
+                                name="fuerza" class="form-control">
+                        </div>
+
+                        <div>
+                            <label for="velocidad">Velocidad:</label>
+                            <input type="number" id="velocidad" 
+                                [ngModel]="heroeEditado().velocidad"
+                                (ngModelChange)="heroeEditado.set({ ...heroeEditado(), velocidad: $event })"
+                                name="velocidad" class="form-control">
+                        </div>
+
+                        <div>
+                            <label for="durabilidad">Durabilidad:</label>
+                            <input type="number" id="durabilidad" 
+                            [ngModel]="heroeEditado().durabilidad"
+                                (ngModelChange)="heroeEditado.set({ ...heroeEditado(), durabilidad: $event })"
+                                name="durabilidad" class="form-control">
+                        </div>
+
+                        <div>
+                            <label for="poder">Poder:</label>
+                            <input type="number" id="poder" 
+                                [ngModel]="heroeEditado().poder"
+                                (ngModelChange)="heroeEditado.set({ ...heroeEditado(), poder: $event })" 
+                                name="poder" class="form-control">
+                        </div>
+
+                        <div>
+                            <label for="combate">Combate:</label>
+                            <input type="number" id="combate" 
+                            [ngModel]="heroeEditado().combate"
+                                (ngModelChange)="heroeEditado.set({ ...heroeEditado(), combate: $event })"
+                                name="combate" class="form-control">
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" 
+                    (click)="editarHeroe(heroeEditado())"
+                    data-bs-dismiss="modal">
+                    Guardar cambios
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+.contenedor-principal{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.formulario-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  background: #dbdbdb;
+  border-radius: 8px;
+  margin: 2rem;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+.card-container{
+    margin: 2rem;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: #e3f2fd;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 4px;
+}
